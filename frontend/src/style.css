@@ -1,0 +1,258 @@
+:root {
+  font-family: 'SF Pro Display', 'PingFang SC', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+  color: #0f172a;
+  background-color: #eef2ff;
+  line-height: 1.5;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #dbeafe, #eef2ff 45%, #e0e7ff 100%);
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 2rem clamp(1rem, 6vw, 4rem);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.panel {
+  width: min(960px, 100%);
+  background: #fff;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.panel__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.panel__header h1 {
+  margin: 0.25rem 0;
+  font-size: clamp(1.75rem, 4vw, 2.4rem);
+}
+
+.subtitle {
+  margin: 0;
+  color: #475569;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.status-group {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.badge.connected {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badge.connecting {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.badge.disconnected {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.ghost {
+  border: 1px solid #cbd5f5;
+  border-radius: 999px;
+  background: transparent;
+  padding: 0.45rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ghost:hover {
+  border-color: #6366f1;
+  color: #4338ca;
+}
+
+.chat {
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 1rem;
+  min-height: 360px;
+  max-height: 520px;
+  overflow-y: auto;
+  background: linear-gradient(180deg, #f8fafc 0%, #fff 60%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.placeholder {
+  text-align: center;
+  color: #94a3b8;
+  margin: 2rem 0;
+}
+
+.bubble {
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.bubble[data-transport='websocket'] {
+  border-color: #c7d2fe;
+  background: #eef2ff;
+}
+
+.bubble[data-transport='sse'] {
+  border-color: #fcd34d;
+  background: #fffbeb;
+}
+
+.bubble__meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.bubble__text {
+  margin: 0;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.timestamp {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.composer {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.composer input {
+  flex: 1;
+  border-radius: 14px;
+  border: 1px solid #cbd5f5;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border 0.2s ease;
+}
+
+.composer input:focus {
+  outline: none;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+}
+
+.composer button {
+  border: none;
+  border-radius: 14px;
+  background: #4f46e5;
+  color: white;
+  font-weight: 600;
+  padding: 0 1.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.composer button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.composer button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+.diagnostics {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1rem;
+}
+
+.diagnostics ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.diagnostics li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+@media (max-width: 720px) {
+  .panel {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
+
+  .panel__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .composer {
+    flex-direction: column;
+  }
+
+  .composer button {
+    width: 100%;
+    padding: 0.85rem;
+  }
+}
